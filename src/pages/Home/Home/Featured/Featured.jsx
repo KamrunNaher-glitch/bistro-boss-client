@@ -1,12 +1,18 @@
 import React from 'react';
 import './Featured.css'
 import featuredImg from '../../../../assets/home/featured.jpg'
+import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
+
 
 
 
 const Featured = () => {
     return (
-        <div className="featured-item bg-fixed text-white pt-8 my-20">
+        <div>
+            <SectionTitle subHeading="Check It Out" heading="Featured Item">
+
+            </SectionTitle>
+             <div className="featured-item bg-fixed text-white pt-8 my-20">
             
             <div className="md:flex justify-center items-center bg-slate-500 bg-opacity-60 pb-20 pt-12 px-36">
                 <div>
@@ -20,6 +26,8 @@ const Featured = () => {
                 </div>
             </div>
         </div>
+        </div>
+       
     );
 };
 
