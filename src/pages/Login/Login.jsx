@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from 'react';
-import { loadCaptchaEnginge, LoadCanvasTemplate,  validateCaptcha } from 'react-simple-captcha';
+import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -8,72 +8,72 @@ import SocialLogin from '../../components/SocialLogin/SocialLogin';
 
 const Login = () => {
   <Helmet>
-        <title>Bistro Boss || Login</title>
-      </Helmet>
-   
-    const [disabled,setDisabled] = useState(true);
-    const{signIn} = useContext(AuthContext);
-    const navigate = useNavigate();
-    const location = useLocation();
+    <title>Bistro Boss || Login</title>
+  </Helmet>
 
-    const from = location.state?.from?.pathname || "/";
-    console.log('state in the location login page',location.state)
+  const [disabled, setDisabled] = useState(true);
+  const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-    useEffect(() =>{
-        loadCaptchaEnginge(6);
-    },[])
+  const from = location.state?.from?.pathname || "/";
+  console.log('state in the location login page', location.state)
+
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, [])
 
 
 
-    const handleLogin = event =>{
-        event.preventDefault();
-        const form = event.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log(email, password);
-        signIn(email,password)
-        .then(result => {
-          const user = result.user;
-          console.log(user);
-          Swal.fire({
-            title: "User Login Successful",
-            showClass: {
-              popup: `
+  const handleLogin = event => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+    signIn(email, password)
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+        Swal.fire({
+          title: "User Login Successful",
+          showClass: {
+            popup: `
                 animate__animated
                 animate__fadeInUp
                 animate__faster
               `
-            },
-            hideClass: {
-              popup: `
+          },
+          hideClass: {
+            popup: `
                 animate__animated
                 animate__fadeOutDown
                 animate__faster
               `
-            }
-          });
-          navigate(from, { replace: true });
-        })
-    }
+          }
+        });
+        navigate(from, { replace: true });
+      })
+  }
 
-    const handleValidateCaptcha = (e) =>{
-       const user_captcha_value = e.target.value;
-       if (validateCaptcha(user_captcha_value)) {
-        setDisabled(false);
+  const handleValidateCaptcha = (e) => {
+    const user_captcha_value = e.target.value;
+    if (validateCaptcha(user_captcha_value)) {
+      setDisabled(false);
     }
     else {
-        setDisabled(true)
-    }
-       
-
+      setDisabled(true)
     }
 
-    return (
-     <>
-     <Helmet>
-                     <title>Bistro Boss || Login</title>
-                 </Helmet>
-        <div className="hero bg-base-200">
+
+  }
+
+  return (
+    <>
+      <Helmet>
+        <title>Bistro Boss || Login</title>
+      </Helmet>
+      <div className="hero bg-base-200">
         <div className="hero-content flex-col md:flex-row-reverse ">
           <div className="text-center md:w-1/2 lg:text-left">
             <h1 className="text-5xl font-bold">Login now!</h1>
@@ -98,15 +98,15 @@ const Login = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                <LoadCanvasTemplate />
+                  <LoadCanvasTemplate />
                 </label>
                 <input onBlur={handleValidateCaptcha} type="text" name='captcha' placeholder="type the captcha above" className="input input-bordered" required />
-                
-               
+
+
               </div>
               <div className="form-control mt-6">
-                
-              <input disabled={false} className="btn btn-primary" type="submit" value="Login" />
+
+                <input disabled={false} className="btn btn-primary" type="submit" value="Login" />
 
               </div>
             </form>
@@ -116,9 +116,9 @@ const Login = () => {
         </div>
       </div>
 
-     
-     </>
-    );
+
+    </>
+  );
 };
 
 export default Login;
