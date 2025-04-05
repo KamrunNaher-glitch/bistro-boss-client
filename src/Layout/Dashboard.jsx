@@ -4,10 +4,12 @@ import { FaCalendar, FaRProject, FaUtensils } from 'react-icons/fa6';
 import { NavLink, Outlet } from 'react-router-dom';
 import useCart from '../hooks/useCart';
 import { MdMenuBook } from 'react-icons/md';
+import useAdmin from '../hooks/useAdmin';
 
 const Dashboard = () => {
     const [cart] = useCart();
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
+
     return (
         <div className='flex'>
             {/* DashBoard Side Bar */}
