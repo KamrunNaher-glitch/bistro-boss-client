@@ -14,7 +14,7 @@ const AllUsers = () => {
 
             return res.data;
         },
-        refetchOnWindowFocus: true // ✅ ensures auto-refresh on focus/navigation
+        refetchOnWindowFocus: true 
     });
 
     const handleMakeAdmin = user => {
