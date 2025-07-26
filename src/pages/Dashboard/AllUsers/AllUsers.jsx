@@ -60,14 +60,17 @@ const AllUsers = () => {
     };
 
     return (
-        <div>
-            <div className='flex justify-evenly my-4'>
-                <h2 className='text-3xl'>All Users</h2>
-                <h2 className='text-3xl'>Total Users: {users.length}</h2>
+         <div className="p-2 md:p-6">
+            {/* Title Section */}
+            <div className='flex flex-col md:flex-row justify-between items-start md:items-center gap-2 md:gap-4 mb-4'>
+                <h2 className='text-xl md:text-3xl font-semibold'>All Users</h2>
+                <h2 className='text-md md:text-xl'>Total Users: {users.length}</h2>
             </div>
-            <div className="overflow-x-auto">
-                <table className="table table-zebra w-full">
-                    <thead>
+
+            {/* Table Section */}
+            <div className="overflow-x-auto rounded-md">
+                <table className="table table-zebra w-full text-sm md:text-base">
+                    <thead className="bg-base-200">
                         <tr>
                             <th>#</th>
                             <th>Name</th>
@@ -80,20 +83,20 @@ const AllUsers = () => {
                         {
                             users.map((user, index) => (
                                 <tr key={user._id}>
-                                    <th>{index + 1}</th>
+                                    <td>{index + 1}</td>
                                     <td>{user.name || 'N/A'}</td>
-                                    <td>{user.email}</td>
+                                    <td className="break-all">{user.email}</td>
                                     <td>
                                         {
                                             user.role === 'admin' 
                                             ? 'Admin'
-                                            : <button onClick={() => handleMakeAdmin(user)} className="btn btn-md bg-orange-600">
-                                                <FaUsers className='text-white' />
-                                            </button>
+                                            : <button onClick={() => handleMakeAdmin(user)} className="btn btn-xs md:btn-sm bg-orange-600 text-white">
+                                                <FaUsers />
+                                              </button>
                                         }
                                     </td>
                                     <td>
-                                        <button onClick={() => handleDeleteUser(user)} className="btn btn-ghost btn-lg">
+                                        <button onClick={() => handleDeleteUser(user)} className="btn btn-ghost btn-xs md:btn-md">
                                             <FaTrash className='text-red-700' />
                                         </button>
                                     </td>

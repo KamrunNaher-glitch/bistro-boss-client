@@ -15,10 +15,10 @@ const PaymentHistory = () => {
     }
   })
   return (
-    <div>
-      <h2 className='text-3xl'>Total Payments : {payments.length}</h2>
-      <div className="overflow-x-auto">
-        <table className="table table-zebra">
+    <div className="p-2 md:p-6">
+      <h2 className='text-xl md:text-3xl font-semibold mb-4'>Total Payments : {payments.length}</h2>
+      <div className="overflow-x-auto rounded-md">
+        <table className="table table-zebra w-full text-sm md:text-base">
           {/* head */}
           <thead>
             <tr>
@@ -32,7 +32,7 @@ const PaymentHistory = () => {
             {payments.map((payment, index) => <tr key={payment._id}>
               <th>{index + 1}</th>
               <td>${payment.price}</td>
-              <td>{payment.transactionId}</td>
+                  <td className="break-all">{payment.transactionId}</td>
               <td>{payment.status}</td>
             </tr>)}
           </tbody>

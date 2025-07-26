@@ -70,24 +70,31 @@ const FoodCard = ({ item }) => {
     };
 
     return (
-        <div className="card w-96 bg-base-100 shadow-xl">
-            <figure>
-                <img src={image} alt="food" />
-            </figure>
-            <p className="bg-slate-900 text-white absolute right-0 mr-4 px-4 mt-4">${price}</p>
-            <div className="card-body flex flex-col items-center">
-                <h2 className="card-title">{name}</h2>
-                <p>{recipe}</p>
-                <div className="card-actions justify-end">
-                    <button
-                        onClick={handleAddToCart} // 
-                        className="btn btn-outline bg-slate-300 border-0 border-b-4 border-orange-400 mt-4"
-                    >
-                        Add to cart
-                    </button>
-                </div>
-            </div>
+         <div className="card w-full max-w-sm mx-auto bg-base-100 shadow-xl relative">
+      <figure>
+        <img src={image} alt={name} className="w-full h-48 object-cover" />
+      </figure>
+
+      {/* Price Tag */}
+      <p className="bg-slate-900 text-white absolute top-4 right-4 px-3 py-1 rounded text-sm">
+        ${price}
+      </p>
+
+      <div className="card-body text-center">
+        <h2 className="card-title justify-center">{name}</h2>
+        <p className="text-sm text-gray-600">{recipe}</p>
+
+        {/* Centered on mobile, right on md+ */}
+        <div className="card-actions mt-4 flex justify-center md:justify-end">
+          <button
+            onClick={handleAddToCart}
+            className="btn btn-outline bg-slate-300 border-0 border-b-4 border-orange-400"
+          >
+            Add to cart
+          </button>
         </div>
+      </div>
+    </div>
     );
 };
 
