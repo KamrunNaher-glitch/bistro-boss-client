@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -6,43 +6,44 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useCart from '../../hooks/useCart';
 
 
+
 const FoodCard = ({ item }) => {
-    const { name, image, recipe, price,_id} = item;
+    const { name, image, recipe, price, _id } = item;
     const { user } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const axiosSecure = useAxiosSecure();
-    const [,refetch] = useCart();
+    const [, refetch] = useCart();
     const handleAddToCart = (food) => {
-      
+
         // console.log(user.email,food);
         const cartItem =
-         {
-          menuId: _id,
-          email: user.email,
-          name,
-          image,
-          price
-         }
-         axiosSecure.post('/carts',cartItem)
-         .then(res => {
-            console.log(res.data);
-            if(res.data.insertedId){
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: `${name} added to your cart`,
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
-                //   Refetch The Cart
-                refetch();
-            }
-         })
+        {
+            menuId: _id,
+            email: user.email,
+            name,
+            image,
+            price
+        }
+
+        axiosSecure.post('/carts', cartItem)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `${name} added to your cart`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    //   Refetch The Cart
+                    refetch();
+                }
+            })
 
         if (user && user.email) {
-            // ✅ Perform the add-to-cart logic (implement API request here if needed)
-            Swal.fire({
+                Swal.fire({
                 icon: 'success',
                 title: 'Added to Cart!',
                 text: `${food.name} has been added successfully.`,
@@ -62,7 +63,7 @@ const FoodCard = ({ item }) => {
             }).then((result) => {
                 if (result.isConfirmed) {
                     // ✅ Redirect to login page (modify based on your routing)
-                    navigate('/login', {state:{from:location}})
+                    navigate('/login', { state: { from: location } })
                 }
             });
         }
@@ -78,8 +79,8 @@ const FoodCard = ({ item }) => {
                 <h2 className="card-title">{name}</h2>
                 <p>{recipe}</p>
                 <div className="card-actions justify-end">
-                    <button 
-                        onClick={ handleAddToCart} // 
+                    <button
+                        onClick={handleAddToCart} // 
                         className="btn btn-outline bg-slate-300 border-0 border-b-4 border-orange-400 mt-4"
                     >
                         Add to cart

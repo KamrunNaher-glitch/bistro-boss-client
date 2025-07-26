@@ -3,11 +3,12 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import { router } from './Routes/Routes';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-
+import AuthProvider from './Providers/AuthProvider';
 import {
   RouterProvider,
 } from "react-router-dom";
-import AuthProvider from './Providers/AuthProvider';
+
+
 import {
   QueryClient,
   QueryClientProvider,

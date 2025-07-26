@@ -8,7 +8,6 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 
-
 const SignUp = () => {
   const axiosPublic = useAxiosPublic();
   const { register, handleSubmit,reset, formState: { errors }, } = useForm();
@@ -28,9 +27,11 @@ const SignUp = () => {
                     email: data.email
                   }
                   axiosPublic.post('/users',userInfo)
+                  
                   .then(res =>{
                     if(res.data.insertedId){
                       console.log('user added to the database')
+                      reset();
                       Swal.fire({
                           position: 'top-end',
                           icon: 'success',
@@ -49,9 +50,6 @@ const SignUp = () => {
         })
 };
   
-  
-  
-
   return (
     <>
       <Helmet>

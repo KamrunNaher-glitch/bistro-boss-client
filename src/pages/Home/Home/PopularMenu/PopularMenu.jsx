@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+
 import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
 import MenuItem from '../../../../Routes/Shared/Footer/MenuItem/MenuItem';
 import useMenu from '../../../../hooks/useMenu';
@@ -16,20 +16,18 @@ const PopularMenu = () => {
     //     })
     // },[])
     return (
-        <section className='mb-12'>
-            <SectionTitle 
-                 heading= "POPULAR ITEMS"
-                subHeading= "From Our Menu"
-            >  
-            </SectionTitle>
-            <div className='grid md:grid-cols-2 gap-10 '>
-                {
-                    popular.map(item => <MenuItem key={item._id} item={item}  ></MenuItem>)
-                }
+        <section className="mb-12 px-4 md:px-8 lg:px-16">
+            <SectionTitle heading="POPULAR ITEMS" subHeading="From Our Menu" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {popular.map(item => (
+                    <MenuItem key={item._id} item={item} />
+                ))}
             </div>
-            <button className="btn btn-outline border-0 border-b-4 mt-4 ">View Full menu</button>
-
+            <div className="text-center mt-6">
+                <button className="btn btn-outline border-0 border-b-4">View Full Menu</button>
+            </div>
         </section>
+
     );
 };
 

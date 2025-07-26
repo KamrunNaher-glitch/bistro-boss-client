@@ -7,7 +7,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { Link } from 'react-router-dom';
 
 const ManageItems = () => {
-    const [menu, refetch] = useMenu();
+    const [menu,loading, refetch] = useMenu();
     const axiosSecure = useAxiosSecure();
 
     const handleDeleteItem = (item) => {
@@ -24,7 +24,7 @@ const ManageItems = () => {
               const res = await axiosSecure.delete(`/menu/${item._id}`) ;
             //   console.log(res.data) 
             if(res.data.deletedCount > 0){
-                refetch();
+               refetch();
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
