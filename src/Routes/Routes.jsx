@@ -23,6 +23,7 @@ import Payment from "../pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
+import AddReview from "../pages/Dashboard/addReview/AddReview";
 
 
 
@@ -71,6 +72,10 @@ export const router = createBrowserRouter([
       {
         path: 'cart',
         element: <Cart></Cart>
+      },
+      {
+        path:'AddReview',
+        element:<AddReview></AddReview>
       },
       {
         path: 'payment',
